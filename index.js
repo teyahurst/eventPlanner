@@ -13,7 +13,7 @@ function getVenues(searchTerm, maxResults=25){
 }
 
 function getCatering(searchTerm, maxResults=25){
-    fetch(`https://maps.googleapis.com/maps/api/place/details/json?inputtype=textquery&input=restaurant&key=AIzaSyC0iSgTMmUwvN-bER98CgCnmpEnjMTsugc&place_id=ChIJ0bGIwKBMTIYRG_sUSMt0RHI&fields=photos,formatted_address,name&types=catering`)
+    fetch(`https://api.yelp.com/v3/categories&keyword=${searchTerm}`)
     .then(response => {
         return response.json();
     })
@@ -52,6 +52,7 @@ function watchForm(){
         getVenues(searchTerm, maxResults);
         getCatering(searchTerm, maxResults);
     
+      
     
     })
 }
