@@ -43,6 +43,7 @@ function displayCateringResults(responseJson){
 
 
 
+
 function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
@@ -56,6 +57,15 @@ function watchForm(){
     
     })
 }
+
+function json(json){
+    
+}
+
+let script = document.createElement('script');
+script.src = 'https://api.yelp.com/v3/categories/?function=json';
+document.body.append(script)
+
 
 $(watchForm)
 
