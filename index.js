@@ -1,8 +1,9 @@
 'use strict'
 
 const clientId = 'KA22FBL5RDC4NGTQBXZ05JK4KAW3XM1B2WXWYYZLTLB3LZAU';
-const clientSecret = 'S2EJ0ZD3C5VFONTBD1D2LZZGQK1GSYBET2W5VS1AGFTF2PXN';
-const yelpApiKey = "lg1NLNB29VKto-ZUTDRqMXfJ-XMOUwjBWbvXh3q9o2nqmv5cHwPoKwitBJjFZZsYWIJEcDG4ryiWGMUCwv7jl5En0xv13Ch6KYmsO77d78s7Q1sg986zXKk0V45VYHYx"
+const clientSecret = 'KAHYEGCZLU0ZBD004NDG0XNGP3S13TSYNQ5B5GT1KXPAEYNO';
+
+
 
 function getVenues(searchTerm, maxResults=25){
     fetch(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20210328&near=${searchTerm}&intent=browse&radius=10000&limit=25&categoryId=4bf58dd8d48988d171941735`)
@@ -12,33 +13,53 @@ function getVenues(searchTerm, maxResults=25){
     .then(responseJson => displayResults(responseJson))
 }
 
-function getCatering(searchTerm, maxResults=25){
-    fetch(`https://api.yelp.com/v3/categories&keyword=${searchTerm}`)
+function getEventServices(searchTerm){
+    fetch(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20210328&near=${searchTerm}&intent=browse&radius=10000&limit=25&categoryId=5454152e498ef71e2b9132c6`)
     .then(response => {
         return response.json();
     })
-    .then(responseJson => displayCateringResults(responseJson))
+    .then(responseJson => displayEventServicesResults(responseJson))
+    
 }
+
 
 
 
 function displayResults(responseJson){
     console.log(responseJson);
-    $('#results-list').empty();
+    $('#venue-results-list').empty();
     let i = 0; 
     
 
     responseJson.response.venues.forEach(items => {
-        let icon = responseJson.response.venues[0].categories[0].icon
-        $('#results-list').append(`<li>Name: ${items.name}</li><br>
-                                   <li>Address: ${items.location.formattedAddress}</li><br>`)
+        
+        $('#venue-results-list').append(`<div class="venueResults">
+                                            <li>Name: ${items.name}</li><br>
+                                            <li>Address: ${items.location.formattedAddress}</li><br>
+                                         </div>`)
+                                         getVenueDetails(venueId)
+                                         
+                                         
     })
+
    $('#results').removeClass('hidden');
+   
+
 }
 
-function displayCateringResults(responseJson){
-    console.log(responseJson);
+function displayEventServicesResults(responseJson){
+    console.log(responseJson)
+    $('#event-services-results-list').empty();
+    let i = 0;
 
+    responseJson.response.venues.forEach(items => {
+        $('#event-services-results-list').append(`<div class="eventResults">
+                                                    <li>Name: ${items.name}</li><br>
+                                                    <li>Address: ${items.location.formattedAddress}</li><br>
+                                                  </div>`)
+    })
+
+    $('#results').removeClass('hidden');
 }
 
 
@@ -51,21 +72,11 @@ function watchForm(){
         const maxResults = $('#js-max-results').val();
 
         getVenues(searchTerm, maxResults);
-        getCatering(searchTerm, maxResults);
-    
-      
+        getEventServices(searchTerm);
+       
     
     })
 }
-
-function json(json){
-    
-}
-
-let script = document.createElement('script');
-script.src = 'https://api.yelp.com/v3/categories/?function=json';
-document.body.append(script)
-
 
 $(watchForm)
 
