@@ -37,7 +37,7 @@ function displayResults(responseJson){
                                             <li>Name: ${items.name}</li><br>
                                             <li>Address: ${items.location.formattedAddress}</li><br>
                                          </div>`)
-                                         getVenueDetails(venueId)
+                                       
                                          
                                          
     })
