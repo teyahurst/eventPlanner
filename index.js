@@ -5,16 +5,16 @@ const clientSecret = 'KAHYEGCZLU0ZBD004NDG0XNGP3S13TSYNQ5B5GT1KXPAEYNO';
 
 
 
-function getVenues(searchTerm, maxResults=25){
-    fetch(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20210328&near=${searchTerm}&intent=browse&radius=10000&limit=25&categoryId=4bf58dd8d48988d171941735`)
+function getVenues(searchTerm, maxResults){
+    fetch(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20210328&near=${searchTerm}&intent=browse&radius=10000&limit=${maxResults}&categoryId=4bf58dd8d48988d171941735`)
     .then(response => {
         return response.json();
     })
     .then(responseJson => displayResults(responseJson))
 }
 
-function getEventServices(searchTerm){
-    fetch(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20210328&near=${searchTerm}&intent=browse&radius=10000&limit=25&categoryId=5454152e498ef71e2b9132c6`)
+function getEventServices(searchTerm, maxResult){
+    fetch(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20210328&near=${searchTerm}&intent=browse&radius=10000&limit=${maxResult}&categoryId=5454152e498ef71e2b9132c6`)
     .then(response => {
         return response.json();
     })
@@ -37,9 +37,7 @@ function displayResults(responseJson){
                                             <li>Name: ${items.name}</li><br>
                                             <li>Address: ${items.location.formattedAddress}</li><br>
                                          </div>`)
-                                       
-                                         
-                                         
+                                                               
     })
 
    $('#results').removeClass('hidden');
@@ -57,6 +55,7 @@ function displayEventServicesResults(responseJson){
                                                     <li>Name: ${items.name}</li><br>
                                                     <li>Address: ${items.location.formattedAddress}</li><br>
                                                   </div>`)
+
     })
 
     $('#results').removeClass('hidden');
@@ -72,9 +71,9 @@ function watchForm(){
         const maxResults = $('#js-max-results').val();
 
         getVenues(searchTerm, maxResults);
-        getEventServices(searchTerm);
+        getEventServices(searchTerm, maxResults);
        
-    
+        
     })
 }
 
