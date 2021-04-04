@@ -3,16 +3,43 @@
 html{
     background-color: azure;
     color: rgb(82, 82, 82);
-    font-size: 10px;
+    font-size: 8px;
 }
 
-#group {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
+ul{
+    list-style: none;
+}
 
+h1{
+    font-size: 4em;
+}
+
+h2{
+    font-size: 3em;
+}
+
+hr {
+    border-top: 3px double #8c8b8b;
+}
+
+label{
+    font-size: 2em;
+}
+
+label[for="js-search-term"]{
+    margin-left: 2.5%;
 
 }
+
+input[type=submit]{
+    font-size: 3em;
+    background-color: rgb(81, 83, 83);
+    color: azure;
+    border-radius: 50%;
+    margin-top: 2%;
+
+}
+
 
 .item{
     flex: 1;
@@ -24,14 +51,11 @@ html{
 
 }
 
-ul{
-    list-style: none;
-}
 
 .venueResults, .eventResults {
     border: 1px solid rgb(85, 85, 85);
-    background-color: rgb(221, 248, 248);
-    margin: 3%;
+    background-color: rgb(239, 244, 245);
+    margin: 1%;
 }
 
 
@@ -45,16 +69,25 @@ ul{
     
 }
 
-h1, h3{
-    font-size: 2em;
 
-}
+#group {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
 
-hr {
-    border-top: 3px double #8c8b8b;
+
 }
 
 @media all and (min-width: 900px){
+    html{
+        font-size: 12px;
+        font-family: 'Abril Fatface', cursive;
+    }
+
+    h2{
+        font-size: 3em;
+    }
+
     #group {
         display: flex;
         flex-direction: row;
@@ -63,8 +96,7 @@ hr {
     
     }
 
-    h1, h3 {
-        font-size: 4em;
-    }
+    
+
 
 }

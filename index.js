@@ -78,7 +78,3 @@ function watchForm(){
 }
 
 $(watchForm)
-
-
-
-
