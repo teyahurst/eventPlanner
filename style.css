@@ -4,6 +4,7 @@ html{
     background-color: azure;
     color: rgb(82, 82, 82);
     font-size: 8px;
+    box-sizing: border-box;
 }
 
 ul{
@@ -11,7 +12,7 @@ ul{
 }
 
 h1{
-    font-size: 4em;
+    font-size: 48px;
 }
 
 h2{
@@ -37,9 +38,13 @@ input[type=submit]{
     color: azure;
     border-radius: 50%;
     margin-top: 2%;
+    font-size: 3em;
 
 }
 
+input[type=number]{
+    width: 5%;
+}
 
 .item{
     flex: 1;
@@ -84,8 +89,8 @@ input[type=submit]{
         font-family: 'Abril Fatface', cursive;
     }
 
-    h2{
-        font-size: 3em;
+    input[type=number]{
+        width: 3%;
     }
 
     #group {
